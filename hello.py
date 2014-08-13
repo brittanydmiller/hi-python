@@ -1,4 +1,5 @@
 import os
+from numeralConverter import convert
 from flask import Flask, render_template, request, redirect, session
 
 
@@ -14,7 +15,8 @@ def goodbye():
 
 @app.route('/numberform', methods=['POST'])
 def numberform():
-    session['number'] = request.form['number']
+    num = int(request.form['number'])
+    session['numeral'] = convert(num)
     return redirect('/goodbye')
 
 if __name__ == '__main__':
